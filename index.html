@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="FNB Cafe Vijayanagar — fresh food, handcrafted coffee and a cozy neighborhood café experience in Bengaluru." />
-  <title>FNB Cafe | Vijayanagar</title>
+  <meta name="description" content="F&B Cafe Vijayanagar — fresh food, handcrafted coffee and a cozy neighborhood café experience in Bengaluru." />
+  <title>F&B Cafe | Vijayanagar</title>
   <style>
     :root {
       --espresso: #2d1b12;
@@ -139,6 +139,53 @@
     .visual-caption { color:white; width:100%; padding: 18px; border-radius: 18px; background: linear-gradient(180deg, transparent, rgba(0,0,0,.62)); }
     .visual-caption strong { display:block; font-family: Georgia, serif; font-size:28px; }
     .visual-caption span { font-size:13px; opacity:.86; }
+    /* Small hero-card photo screensaver */
+    .hero-card {
+      padding:16px;
+      border-radius:32px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.30);
+      backdrop-filter:blur(12px);
+    }
+    .food-visual.mini-slideshow {
+      min-height:500px;
+      border-radius:26px;
+      overflow:hidden;
+      position:relative;
+      background:#2c1b13;
+      isolation:isolate;
+      box-shadow:0 22px 60px rgba(0,0,0,.30);
+    }
+    .mini-slide {
+      position:absolute; inset:0;
+      background-size:cover;
+      background-position:center;
+      opacity:0;
+      transform:scale(1.035);
+      animation:miniFade 12s ease-in-out infinite;
+    }
+    .mini-slide:nth-child(1) { animation-delay:0s; }
+    .mini-slide:nth-child(2) { animation-delay:6s; }
+    .mini-slideshow::before {
+      content:"";
+      position:absolute; inset:0; z-index:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.04) 35%, rgba(0,0,0,.82) 100%);
+      pointer-events:none;
+    }
+    .mini-slideshow .visual-caption {
+      position:absolute; left:18px; right:18px; bottom:18px; z-index:2;
+      padding:20px 18px 17px;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.28));
+      color:#fff;
+    }
+    .visual-caption strong { font-size:30px; line-height:1.05; }
+    .visual-caption span { display:block; margin-top:6px; font-size:13px; }
+    @keyframes miniFade {
+      0%, 8% { opacity:1; transform:scale(1.035); }
+      45%, 55% { opacity:1; transform:scale(1.07); }
+      92%, 100% { opacity:0; transform:scale(1.095); }
+    }
 
     section { padding: 88px 0; }
     .section-head { display:flex; justify-content:space-between; gap:30px; align-items:end; margin-bottom: 34px; }
@@ -368,14 +415,113 @@
       .lightbox { padding:18px; }
       .lightbox img { max-width:94vw; max-height:78vh; }
     }
+
+    /* Mobile-first refinements */
+    .mobile-nav-link { display:block; padding:10px 6px; border-bottom:1px solid var(--line); }
+    .mobile-nav-link:last-child { border-bottom:0; }
+    .mobile-nav-link:active { background:var(--cream); border-radius:10px; }
+    @media (max-width: 700px) {
+      body { overflow-x:hidden; }
+      .container { width:calc(100% - 24px); }
+      .nav { min-height:64px; height:auto; padding:10px 0; gap:8px; }
+      .brand { min-width:0; gap:8px; }
+      .brand-mark { width:38px; height:38px; border-radius:11px; font-size:16px; flex:0 0 auto; }
+      .brand span { font-size:13px; white-space:nowrap; }
+      .brand span small { font-size:8px; letter-spacing:.12em; }
+      .nav-cta { margin-left:auto; gap:7px; }
+      .nav-cta .btn-primary { padding:9px 12px; font-size:12px; }
+      .mobile-menu { width:40px; height:40px; flex:0 0 40px; }
+
+      #mobileNav { background:rgba(255,253,249,.98); border-top:1px solid var(--line); box-shadow:0 12px 24px rgba(45,27,18,.08); }
+      #mobileNav > div { gap:0 !important; }
+
+      .hero { min-height:auto; padding:44px 0 28px; }
+      .hero-grid { display:flex; flex-direction:column; gap:22px; }
+      .hero-grid > div:first-child { order:1; }
+      .hero-card { order:2; width:100%; }
+      .hero h1 { font-size:clamp(38px, 11vw, 54px); line-height:.98; max-width:12ch; }
+      .hero-copy { font-size:15px; line-height:1.65; max-width:none; }
+      .eyebrow { font-size:10px; letter-spacing:.12em; }
+      .hero-actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+      .hero-actions .btn { width:100%; min-height:46px; padding:11px 12px; }
+      .mini-trust { display:grid; grid-template-columns:1fr; gap:7px; margin-top:18px; font-size:12px; }
+      .hero-card { min-height:0; }
+      .food-visual { min-height:300px; border-radius:22px; }
+      .visual-caption { padding:22px 18px 18px; }
+      .visual-caption strong { font-size:28px; line-height:1.05; max-width:11ch; }
+      .visual-caption span { font-size:13px; }
+
+      section { padding:58px 0; }
+      .section-head { gap:12px; margin-bottom:24px; }
+      h2 { font-size:clamp(30px, 8vw, 42px); line-height:1.05; }
+      .section-note { font-size:13px; }
+
+      .menu-grid { gap:14px; }
+      .menu-card { padding:20px 16px; border-radius:18px; }
+      .menu-card h3 { font-size:19px; }
+      .menu-card li { gap:10px; padding:9px 0; font-size:14px; }
+      .menu-card li > span:first-child { min-width:0; overflow-wrap:anywhere; }
+      .price { flex:0 0 auto; white-space:nowrap; }
+      .menu-note { font-size:12px; line-height:1.5; }
+      .pizza-grid { grid-template-columns:1fr; gap:18px; }
+      .pizza-section { margin-top:18px; padding:20px 16px; border-radius:18px; }
+      .pizza-list li { grid-template-columns:minmax(0,1fr) auto; gap:10px; }
+      .pizza-disclaimer { font-size:11px; }
+
+      .gallery-grid { grid-template-columns:1fr 1fr !important; grid-auto-rows:150px !important; gap:10px; }
+      .gallery-item:nth-child(n) { grid-column:span 1 !important; grid-row:span 1 !important; border-radius:16px; }
+      .gallery-item:first-child { grid-column:span 2 !important; }
+      .gallery-item::after { opacity:1; transform:none; left:10px; bottom:9px; padding:6px 9px; font-size:9px; }
+
+      .about-wrap { grid-template-columns:1fr; gap:24px; padding:26px 18px; border-radius:22px; }
+      .about-wrap h2 { font-size:31px; }
+      .about-wrap p { font-size:14px; }
+      .about-stats { gap:9px; }
+      .stat { padding:16px 13px; border-radius:15px; }
+      .stat strong { font-size:24px; }
+      .stat span { font-size:11px; line-height:1.4; }
+
+      .visit { grid-template-columns:1fr; gap:14px; }
+      .info-card { padding:20px 16px; border-radius:18px; }
+      .info-row { gap:10px; align-items:flex-start; font-size:13px; }
+      .info-row b { min-width:70px; }
+      .info-row span { min-width:0; overflow-wrap:anywhere; }
+      .info-card .btn { width:100%; min-height:46px; }
+      .map-card { min-height:230px; }
+      .map-pin { width:52px; height:52px; }
+
+      .cta { padding:14px 0 64px; }
+      .cta-box { padding:24px 18px; border-radius:22px; }
+      .cta-box h2 { font-size:32px; }
+      .cta-box .btn { width:100%; min-height:46px; }
+
+      .footer-row { flex-direction:column; align-items:flex-start; gap:7px; }
+      footer { padding:28px 0; }
+
+      .lightbox { padding:12px; }
+      .lightbox img { max-width:96vw; max-height:74vh; border-radius:14px; }
+      .lightbox-close { top:10px; right:10px; width:42px; height:42px; }
+      .lightbox-caption { bottom:12px; font-size:11px; }
+    }
+
+    @media (max-width: 390px) {
+      .nav-cta .btn-primary { display:none; }
+      .hero-actions { grid-template-columns:1fr; }
+      .hero h1 { font-size:38px; }
+      .gallery-grid { grid-auto-rows:135px !important; }
+      .food-visual { min-height:265px; }
+      .visual-caption strong { font-size:24px; }
+      .about-stats { grid-template-columns:1fr; }
+    }
+
   </style>
 </head>
 <body>
   <header>
     <div class="container nav">
-      <a class="brand" href="#top" aria-label="FNB Cafe home">
+      <a class="brand" href="#top" aria-label="F&B Cafe home">
         <div class="brand-mark">F</div>
-        <span>FNB CAFE<small>VIJAYANAGAR</small></span>
+        <span>F&amp;B CAFE<small>VIJAYANAGAR</small></span>
       </a>
       <nav aria-label="Main navigation">
         <a href="#menu">Menu</a>
@@ -428,7 +574,9 @@
           </div>
         </div>
         <div class="hero-card">
-          <div class="food-visual" role="img" aria-label="FNB Cafe photo slideshow">
+          <div class="food-visual mini-slideshow" role="img" aria-label="F&B Cafe photo screensaver">
+            <div class="mini-slide" style="background-image:url('photos/fnb7.jpeg');"></div>
+            <div class="mini-slide" style="background-image:url('photos/fnb8.jpeg');"></div>
             <div class="visual-caption">
               <strong>Made for your everyday.</strong>
               <span>Drop in for a cup, stay for the conversation.</span>
@@ -652,18 +800,17 @@
       <div class="container">
         <div class="section-head">
           <div><div class="section-kicker">A glimpse inside</div><h2>Gallery</h2></div>
-          <p class="section-note">Showcase the space, signature dishes, coffee and the little moments that make FNB Cafe special.</p>
+          <p class="section-note">Showcase the space, signature dishes, coffee and the little moments that make F&B Cafe special.</p>
         </div>
         <div class="gallery-grid">
-          <button class="gallery-item" type="button" data-full="photos/fnb11.jpeg" data-caption="FNB Cafe · Photo 1" aria-label="Open FNB Cafe photo 1"><img src="photos/fnb4.jpeg" alt="FNB Cafe photo 1" loading="lazy"></button>
-          <button class="gallery-item" type="button" data-full="photos/fnb1.jpeg" data-caption="FNB Cafe · Photo 2" aria-label="Open FNB Cafe photo 2"><img src="photos/fnb1.jpeg" alt="FNB Cafe photo 2" loading="lazy"></button>
-          <button class="gallery-item" type="button" data-full="photos/fnb2.jpeg" data-caption="FNB Cafe · Photo 2" aria-label="Open FNB Cafe photo 2"><img src="photos/fnb2.jpeg" alt="FNB Cafe photo 2" loading="lazy"></button>
-          <button class="gallery-item" type="button" data-full="photos/fnb3.jpeg" data-caption="FNB Cafe · Photo 3" aria-label="Open FNB Cafe photo 3"><img src="photos/fnb3.jpeg" alt="FNB Cafe photo 3" loading="lazy"></button>
-          <button class="gallery-item" type="button" data-full="photos/fnb4.jpeg" data-caption="FNB Cafe · Photo 4" aria-label="Open FNB Cafe photo 4"><img src="photos/fnb11.jpeg" alt="FNB Cafe photo 4" loading="lazy"></button>
-          <button class="gallery-item" type="button" data-full="photos/fnb5.jpeg" data-caption="FNB Cafe · Photo 5" aria-label="Open FNB Cafe photo 5"><img src="photos/fnb5.jpeg" alt="FNB Cafe photo 5" loading="lazy"></button>
-          <button class="gallery-item" type="button" data-full="photos/fnb6.jpeg" data-caption="FNB Cafe · Photo 6" aria-label="Open FNB Cafe photo 6"><img src="photos/fnb6.jpeg" alt="FNB Cafe photo 6" loading="lazy"></button>
-          <button class="gallery-item" type="button" data-full="photos/fnb7.jpeg" data-caption="FNB Cafe · Photo 7" aria-label="Open FNB Cafe photo 7"><img src="photos/fnb7.jpeg" alt="FNB Cafe photo 7" loading="lazy"></button>
-          <button class="gallery-item" type="button" data-full="photos/fnb8.jpeg" data-caption="FNB Cafe · Photo 8" aria-label="Open FNB Cafe photo 8"><img src="photos/fnb8.jpeg" alt="FNB Cafe photo 8" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="photos/fnb1.jpeg" data-caption="F&B Cafe · Photo 1" aria-label="Open F&B Cafe photo 1"><img src="photos/fnb1.jpeg" alt="F&B Cafe photo 1" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="photos/fnb2.jpeg" data-caption="F&B Cafe · Photo 2" aria-label="Open F&B Cafe photo 2"><img src="photos/fnb2.jpeg" alt="F&B Cafe photo 2" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="photos/fnb3.jpeg" data-caption="F&B Cafe · Photo 3" aria-label="Open F&B Cafe photo 3"><img src="photos/fnb3.jpeg" alt="F&B Cafe photo 3" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="photos/fnb4.jpeg" data-caption="F&B Cafe · Photo 4" aria-label="Open F&B Cafe photo 4"><img src="photos/fnb4.jpeg" alt="F&B Cafe photo 4" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="photos/fnb5.jpeg" data-caption="F&B Cafe · Photo 5" aria-label="Open F&B Cafe photo 5"><img src="photos/fnb5.jpeg" alt="F&B Cafe photo 5" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="photos/fnb6.jpeg" data-caption="F&B Cafe · Photo 6" aria-label="Open F&B Cafe photo 6"><img src="photos/fnb6.jpeg" alt="F&B Cafe photo 6" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="photos/fnb7.jpeg" data-caption="F&B Cafe · Photo 7" aria-label="Open F&B Cafe photo 7"><img src="photos/fnb7.jpeg" alt="F&B Cafe photo 7" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="photos/fnb8.jpeg" data-caption="F&B Cafe · Photo 8" aria-label="Open F&B Cafe photo 8"><img src="photos/fnb8.jpeg" alt="F&B Cafe photo 8" loading="lazy"></button>
         </div>
       </div>
     </section>
@@ -674,7 +821,7 @@
           <div>
             <div class="section-kicker" style="color:#d6a06e;">More than a café</div>
             <h2>Good food. Warm people. No rush.</h2>
-            <p>FNB Cafe is imagined as a friendly neighbourhood spot in Vijayanagar where a strong cup of coffee meets simple, satisfying food. Come in for a quick bite or settle in and make yourself comfortable.</p>
+            <p>F&B Cafe is imagined as a friendly neighbourhood spot in Vijayanagar where a strong cup of coffee meets simple, satisfying food. Come in for a quick bite or settle in and make yourself comfortable.</p>
             <a class="btn btn-primary" style="margin-top:24px;background:#fff;color:#2d1b12;" href="#visit">Plan your visit</a>
           </div>
           <div class="about-stats">
@@ -690,7 +837,7 @@
     <section id="visit">
       <div class="container">
         <div class="section-head">
-          <div><div class="section-kicker">Come say hello</div><h2>Visit FNB Cafe</h2></div>
+          <div><div class="section-kicker">Come say hello</div><h2>Visit F&B Cafe</h2></div>
           <p class="section-note">Add the cafe's exact address, phone number, opening hours and map link here.</p>
         </div>
         <div class="visit">
@@ -704,7 +851,7 @@
           <div class="map-card" aria-label="Stylized map placeholder">
             <div class="road a"></div><div class="road b"></div>
             <div class="map-pin"></div>
-            <div class="map-label"><b>FNB Cafe</b><small>Vijayanagar · Bengaluru</small></div>
+            <div class="map-label"><b>F&B Cafe</b><small>Vijayanagar · Bengaluru</small></div>
           </div>
         </div>
       </div>
@@ -713,7 +860,7 @@
     <section class="cta">
       <div class="container">
         <div class="cta-box">
-          <div><div class="section-kicker">One more coffee?</div><h2>Meet you at FNB.</h2><p>Bring a friend. Bring your laptop. Bring your appetite.</p></div>
+          <div><div class="section-kicker">One more coffee?</div><h2>Meet you at F&B.</h2><p>Bring a friend. Bring your laptop. Bring your appetite.</p></div>
           <a class="btn btn-primary" href="#visit">Get directions →</a>
         </div>
       </div>
@@ -729,8 +876,8 @@
 
   <footer>
     <div class="container footer-row">
-      <p><strong>FNB Cafe Vijayanagar</strong> · Bengaluru</p>
-      <p>© <span id="year"></span> FNB Cafe. All rights reserved.</p>
+      <p><strong>F&B Cafe Vijayanagar</strong> · Bengaluru</p>
+      <p>© <span id="year"></span> F&B Cafe. All rights reserved.</p>
     </div>
   </footer>
 
