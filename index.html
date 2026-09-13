@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="FNB Cafe Vijayanagar — fresh food, handcrafted coffee and a cozy neighborhood café experience in Bengaluru." />
+  <title>FNB Cafe | Vijayanagar</title>
+  <style>
+    :root {
+      --espresso: #2d1b12;
+      --coffee: #5c3524;
+      --caramel: #b77945;
+      --cream: #fbf5ec;
+      --paper: #fffdf9;
+      --sage: #6e7d62;
+      --ink: #251e1a;
+      --muted: #71665e;
+      --line: #eadfd2;
+      --white: #ffffff;
+      --shadow: 0 18px 45px rgba(45, 27, 18, .10);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(255, 253, 249, .90);
+      border-bottom: 1px solid rgba(234, 223, 210, .8);
+    }
+    .nav {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: -.03em; }
+    .brand-mark {
+      width: 42px; height: 42px; border-radius: 13px;
+      display: grid; place-items: center;
+      color: var(--white); background: var(--espresso);
+      font-size: 18px;
+      box-shadow: 0 7px 16px rgba(45,27,18,.18);
+    }
+    .brand span small { display: block; font-size: 10px; letter-spacing: .16em; color: var(--caramel); text-transform: uppercase; margin-top: -1px; }
+    nav { display: flex; gap: 24px; color: #5e524a; font-size: 14px; font-weight: 700; }
+    nav a:hover { color: var(--coffee); }
+    .nav-cta { display:flex; gap: 10px; align-items:center; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      padding: 12px 18px; border-radius: 999px; font-weight: 800; font-size: 14px;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      border: 1px solid transparent;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--espresso); color: white; box-shadow: 0 10px 24px rgba(45,27,18,.16); }
+    .btn-outline { border-color: var(--line); background: white; }
+
+    .hero {
+      position: relative; overflow: hidden;
+      min-height: 720px;
+      display: flex; align-items: center;
+      color: white;
+      padding: 90px 0 82px;
+      background: #22150f;
+      isolation: isolate;
+    }
+    .hero-slideshow {
+      position: absolute; inset: 0; z-index: -3;
+      background-size: cover; background-position: center;
+    }
+    .hero-slide {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      opacity: 0; transform: scale(1.05);
+      animation: heroFade 32s infinite;
+    }
+    .hero-slide:nth-child(1) { animation-delay: 0s; }
+    .hero-slide:nth-child(2) { animation-delay: 5s; }
+    .hero-slide:nth-child(3) { animation-delay: 8s; }
+    .hero-slide:nth-child(4) { animation-delay: 12s; }
+    .hero-slide:nth-child(5) { animation-delay: 16s; }
+    .hero-slide:nth-child(6) { animation-delay: 20s; }
+    .hero-slide:nth-child(7) { animation-delay: 24s; }
+    .hero-slide:nth-child(8) { animation-delay: 28s; }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: -2;
+      background: linear-gradient(90deg, rgba(20,11,7,.86) 0%, rgba(20,11,7,.60) 42%, rgba(20,11,7,.32) 100%),
+                  linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.45));
+    }
+    .hero::after {
+      content: ""; position: absolute; inset: auto 0 0 0; height: 120px;
+      background: linear-gradient(transparent, rgba(20,11,7,.62)); z-index: -1;
+    }
+    @keyframes heroFade {
+      0%, 12% { opacity: 1; transform: scale(1.05); }
+      15%, 97% { opacity: 0; transform: scale(1.12); }
+      100% { opacity: 1; transform: scale(1.05); }
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 64px; align-items: center; position: relative; z-index: 2; width: 100%; }
+    .eyebrow { display: inline-flex; gap: 8px; align-items: center; color: var(--caramel); text-transform: uppercase; letter-spacing: .16em; font-size: 12px; font-weight: 900; margin-bottom: 18px; }
+    .eyebrow::before { content: ""; width: 30px; height: 2px; background: var(--caramel); }
+    h1 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(52px, 7vw, 88px); line-height: .96; letter-spacing: -.055em; color: white; margin-bottom: 24px; }
+    .hero-copy { font-size: 18px; max-width: 575px; color: rgba(255,255,255,.86); margin-bottom: 30px; }
+    .hero-actions { display:flex; flex-wrap: wrap; gap: 12px; }
+    .mini-trust { display:flex; flex-wrap:wrap; gap:16px; margin-top:28px; color:rgba(255,255,255,.82); font-size:13px; font-weight:700; }
+    .mini-trust span { display:flex; align-items:center; gap:7px; }
+
+    .hero-card {
+      background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.28); border-radius: 30px;
+      padding: 24px; box-shadow: 0 18px 50px rgba(0,0,0,.22); transform: rotate(1.2deg); backdrop-filter: blur(4px);
+    }
+    .food-visual {
+      min-height: 430px; border-radius: 22px; overflow:hidden; position: relative;
+      background:
+        radial-gradient(circle at 50% 38%, #e3b382 0 13%, transparent 14%),
+        radial-gradient(circle at 44% 42%, #8d5237 0 17%, transparent 18%),
+        radial-gradient(circle at 57% 54%, #bc7846 0 18%, transparent 19%),
+        radial-gradient(circle at 34% 59%, #d19d62 0 14%, transparent 15%),
+        radial-gradient(circle at 72% 65%, #6d7e61 0 12%, transparent 13%),
+        linear-gradient(145deg, #6f3d27, #2c1b13 74%);
+      display:flex; align-items:flex-end; padding: 24px;
+    }
+    .visual-caption { color:white; width:100%; padding: 18px; border-radius: 18px; background: linear-gradient(180deg, transparent, rgba(0,0,0,.62)); }
+    .visual-caption strong { display:block; font-family: Georgia, serif; font-size:28px; }
+    .visual-caption span { font-size:13px; opacity:.86; }
+
+    section { padding: 88px 0; }
+    .section-head { display:flex; justify-content:space-between; gap:30px; align-items:end; margin-bottom: 34px; }
+    .section-kicker { color:var(--caramel); text-transform:uppercase; font-size:11px; font-weight:900; letter-spacing:.17em; margin-bottom:10px; }
+    h2 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(38px, 5vw, 58px); letter-spacing:-.045em; line-height:1.05; color:var(--espresso); }
+    .section-note { color:var(--muted); max-width:420px; }
+
+    .menu-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; }
+    .menu-grid-wide { grid-template-columns: repeat(3, 1fr); align-items:start; }
+    .menu-card small { display:block; color:var(--muted); font-size:11px; line-height:1.35; margin-top:2px; }
+    .menu-note { margin-top:14px; color:var(--muted); font-size:12px; line-height:1.5; }
+    .price-head { display:flex; justify-content:space-between; color:var(--muted); font-size:10px; text-transform:uppercase; letter-spacing:.08em; margin:-2px 0 10px; }
+    .menu-card-featured { background:linear-gradient(135deg, #fbf5ec, #f2e5d6); }
+    .pizza-section { margin-top:28px; background:white; border:1px solid var(--line); border-radius:var(--radius); padding:28px; box-shadow:0 12px 30px rgba(45,27,18,.05); }
+    .pizza-heading h3 { font-family:Georgia,serif; font-size:30px; color:var(--espresso); margin-top:2px; }
+    .premium-heading { margin-bottom:6px; }
+    .pizza-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:22px; }
+    .pizza-list { list-style:none; display:grid; gap:0; }
+    .pizza-list li { display:flex; justify-content:space-between; gap:18px; padding:11px 0; border-bottom:1px dashed var(--line); font-size:14px; }
+    .pizza-list li:last-child { border-bottom:0; }
+    .pizza-list b { color:var(--coffee); white-space:nowrap; }
+    .pizza-disclaimer { margin-top:18px; }
+    .menu-card { background:white; border:1px solid var(--line); border-radius:var(--radius); padding:24px; box-shadow: 0 12px 30px rgba(45,27,18,.05); }
+    .menu-icon { width:44px; height:44px; border-radius:14px; background:var(--cream); display:grid; place-items:center; margin-bottom:18px; font-size:20px; }
+    .menu-card h3 { font-family: Georgia, serif; font-size:25px; margin-bottom:12px; }
+    .menu-card ul { list-style:none; display:grid; gap:13px; }
+    .menu-card li { display:flex; justify-content:space-between; gap:14px; font-size:14px; border-bottom:1px dashed var(--line); padding-bottom:9px; }
+    .menu-card li:last-child { border-bottom:0; padding-bottom:0; }
+    .price { font-weight:900; color:var(--coffee); white-space:nowrap; }
+
+
+    .gallery-grid {
+      display:grid;
+      grid-template-columns:repeat(12, 1fr);
+      grid-auto-rows:170px;
+      gap:16px;
+    }
+    .gallery-item {
+      position:relative;
+      overflow:hidden;
+      border-radius:22px;
+      border:1px solid var(--line);
+      background:var(--cream);
+      box-shadow:0 12px 30px rgba(45,27,18,.05);
+      cursor:pointer;
+      padding:0;
+      appearance:none;
+    }
+    .gallery-item:nth-child(1) { grid-column:span 7; grid-row:span 2; }
+    .gallery-item:nth-child(2) { grid-column:span 5; }
+    .gallery-item:nth-child(3) { grid-column:span 5; }
+    .gallery-item:nth-child(4) { grid-column:span 4; }
+    .gallery-item:nth-child(5) { grid-column:span 4; }
+    .gallery-item:nth-child(6) { grid-column:span 4; }
+    .gallery-item img { width:100%; height:100%; object-fit:cover; transition:transform .5s ease, filter .5s ease; }
+    .gallery-item::after {
+      content:"View photo ↗";
+      position:absolute; left:16px; bottom:14px;
+      padding:7px 11px; border-radius:999px;
+      color:#fff; font-size:11px; font-weight:800;
+      background:rgba(36,22,16,.72); backdrop-filter:blur(7px);
+      opacity:0; transform:translateY(6px); transition:opacity .25s ease, transform .25s ease;
+    }
+    .gallery-item:hover img { transform:scale(1.06); filter:saturate(1.08); }
+    .gallery-item:hover::after, .gallery-item:focus-visible::after { opacity:1; transform:translateY(0); }
+    .gallery-item:focus-visible { outline:3px solid var(--caramel); outline-offset:3px; }
+
+    .lightbox {
+      position:fixed; inset:0; z-index:100;
+      display:none; place-items:center;
+      padding:28px;
+      background:rgba(12,8,6,.88);
+      backdrop-filter:blur(10px);
+    }
+    .lightbox.open { display:grid; }
+    .lightbox img {
+      max-width:min(1100px, 94vw); max-height:84vh;
+      width:auto; height:auto; object-fit:contain;
+      border-radius:20px; box-shadow:0 25px 80px rgba(0,0,0,.45);
+    }
+    .lightbox-close {
+      position:absolute; top:18px; right:20px;
+      width:46px; height:46px; border:0; border-radius:50%;
+      background:rgba(255,255,255,.12); color:#fff;
+      font-size:25px; cursor:pointer;
+    }
+    .lightbox-caption {
+      position:absolute; left:50%; bottom:22px; transform:translateX(-50%);
+      padding:9px 14px; border-radius:999px;
+      background:rgba(255,255,255,.1); color:#fff; font-size:12px;
+      max-width:90vw; text-align:center; backdrop-filter:blur(8px);
+    }
+
+    .about-wrap { background: var(--espresso); color:white; border-radius: 30px; padding: 52px; display:grid; grid-template-columns: 1fr 1fr; gap:58px; align-items:center; }
+    .about-wrap h2 { color:white; }
+    .about-wrap p { color: #dbcfc5; margin-top:18px; }
+    .about-stats { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .stat { padding:22px; border:1px solid rgba(255,255,255,.12); border-radius:20px; background:rgba(255,255,255,.05); }
+    .stat strong { display:block; font-size:31px; font-family:Georgia,serif; }
+    .stat span { color:#c5b8ae; font-size:12px; }
+
+    .visit { display:grid; grid-template-columns: .9fr 1.1fr; gap:22px; }
+    .info-card { background:var(--cream); border-radius:var(--radius); padding:30px; }
+    .info-row { display:flex; gap:14px; padding:15px 0; border-bottom:1px solid var(--line); }
+    .info-row:first-child { padding-top:0; }
+    .info-row:last-child { border-bottom:0; padding-bottom:0; }
+    .info-row b { min-width:82px; }
+    .info-row span { color:var(--muted); }
+    .map-card { min-height: 310px; border-radius:var(--radius); overflow:hidden; position:relative; border:1px solid var(--line); background:
+      linear-gradient(rgba(255,255,255,.52), rgba(255,255,255,.52)),
+      repeating-linear-gradient(0deg, transparent 0 42px, rgba(92,53,36,.09) 43px 44px),
+      repeating-linear-gradient(90deg, transparent 0 64px, rgba(92,53,36,.09) 65px 66px),
+      #eee4d8;
+    }
+    .road { position:absolute; background:rgba(255,255,255,.95); box-shadow: 0 0 0 1px rgba(92,53,36,.08); transform: rotate(-13deg); }
+    .road.a { width:120%; height:30px; left:-10%; top:34%; }
+    .road.b { width:30px; height:120%; left:54%; top:-10%; transform:rotate(21deg); }
+    .map-pin { position:absolute; top:50%; left:54%; transform:translate(-50%,-50%); width:62px; height:62px; border-radius:50% 50% 50% 8px; background:var(--espresso); color:white; rotate:-45deg; display:grid; place-items:center; box-shadow:0 12px 28px rgba(45,27,18,.25); }
+    .map-pin::after { content:"F"; rotate:45deg; font-weight:900; font-size:22px; }
+    .map-label { position:absolute; bottom:18px; left:18px; background:rgba(255,253,249,.92); border-radius:13px; padding:12px 14px; box-shadow:var(--shadow); }
+    .map-label b { display:block; }
+    .map-label small { color:var(--muted); }
+
+    .cta { padding: 22px 0 88px; }
+    .cta-box { background:linear-gradient(135deg, #d7e0cf, #eff3e9); border-radius:30px; padding:44px; display:flex; justify-content:space-between; align-items:center; gap:24px; }
+    .cta-box h2 { font-size:44px; }
+    .cta-box p { color:#59614f; margin-top:8px; }
+
+    footer { background:#241610; color:#cdbfb6; padding:40px 0; }
+    .footer-row { display:flex; justify-content:space-between; gap:25px; align-items:center; }
+    footer strong { color:white; }
+    footer p { font-size:13px; }
+
+    .mobile-menu { display:none; border:1px solid var(--line); background:white; width:42px; height:42px; border-radius:12px; font-size:19px; }
+
+    @media (max-width: 900px) {
+      nav { display:none; }
+      .mobile-menu { display:grid; place-items:center; }
+      .nav-cta .btn-outline { display:none; }
+      .hero-grid, .about-wrap, .visit { grid-template-columns:1fr; }
+      .hero { padding-top:60px; }
+      .hero-card { transform:none; }
+      .menu-grid { grid-template-columns:1fr; }
+      .gallery-grid { grid-template-columns:1fr 1fr; grid-auto-rows:180px; }
+      .gallery-item:nth-child(n) { grid-column:span 1; grid-row:span 1; }
+      .gallery-item:first-child { grid-column:span 2; grid-row:span 2; }
+      .section-head { align-items:start; flex-direction:column; }
+      .cta-box { flex-direction:column; align-items:flex-start; }
+    }
+    @media (max-width: 560px) {
+      .container { width:min(100% - 28px, 1120px); }
+      .nav { height:68px; }
+      .brand span { font-size:14px; }
+      .hero-copy { font-size:16px; }
+      .food-visual { min-height:330px; }
+  
+    .gallery-grid {
+      display:grid;
+      grid-template-columns:repeat(12, 1fr);
+      grid-auto-rows:170px;
+      gap:16px;
+    }
+    .gallery-item {
+      position:relative;
+      overflow:hidden;
+      border-radius:22px;
+      border:1px solid var(--line);
+      background:var(--cream);
+      box-shadow:0 12px 30px rgba(45,27,18,.05);
+      cursor:pointer;
+      padding:0;
+      appearance:none;
+    }
+    .gallery-item:nth-child(1) { grid-column:span 7; grid-row:span 2; }
+    .gallery-item:nth-child(2) { grid-column:span 5; }
+    .gallery-item:nth-child(3) { grid-column:span 5; }
+    .gallery-item:nth-child(4) { grid-column:span 4; }
+    .gallery-item:nth-child(5) { grid-column:span 4; }
+    .gallery-item:nth-child(6) { grid-column:span 4; }
+    .gallery-item img { width:100%; height:100%; object-fit:cover; transition:transform .5s ease, filter .5s ease; }
+    .gallery-item::after {
+      content:"View photo ↗";
+      position:absolute; left:16px; bottom:14px;
+      padding:7px 11px; border-radius:999px;
+      color:#fff; font-size:11px; font-weight:800;
+      background:rgba(36,22,16,.72); backdrop-filter:blur(7px);
+      opacity:0; transform:translateY(6px); transition:opacity .25s ease, transform .25s ease;
+    }
+    .gallery-item:hover img { transform:scale(1.06); filter:saturate(1.08); }
+    .gallery-item:hover::after, .gallery-item:focus-visible::after { opacity:1; transform:translateY(0); }
+    .gallery-item:focus-visible { outline:3px solid var(--caramel); outline-offset:3px; }
+
+    .lightbox {
+      position:fixed; inset:0; z-index:100;
+      display:none; place-items:center;
+      padding:28px;
+      background:rgba(12,8,6,.88);
+      backdrop-filter:blur(10px);
+    }
+    .lightbox.open { display:grid; }
+    .lightbox img {
+      max-width:min(1100px, 94vw); max-height:84vh;
+      width:auto; height:auto; object-fit:contain;
+      border-radius:20px; box-shadow:0 25px 80px rgba(0,0,0,.45);
+    }
+    .lightbox-close {
+      position:absolute; top:18px; right:20px;
+      width:46px; height:46px; border:0; border-radius:50%;
+      background:rgba(255,255,255,.12); color:#fff;
+      font-size:25px; cursor:pointer;
+    }
+    .lightbox-caption {
+      position:absolute; left:50%; bottom:22px; transform:translateX(-50%);
+      padding:9px 14px; border-radius:999px;
+      background:rgba(255,255,255,.1); color:#fff; font-size:12px;
+      max-width:90vw; text-align:center; backdrop-filter:blur(8px);
+    }
+
+    .about-wrap { padding:30px 22px; }
+      .about-stats { grid-template-columns:1fr 1fr; }
+      .cta-box { padding:30px 24px; }
+      .cta-box h2 { font-size:36px; }
+      .nav-cta .btn-primary { padding:10px 14px; }
+      .gallery-grid { grid-template-columns:1fr; grid-auto-rows:220px; }
+      .gallery-item:first-child { grid-column:span 1; grid-row:span 1; }
+      .gallery-item:nth-child(n) { grid-column:span 1; grid-row:span 1; }
+      .lightbox { padding:18px; }
+      .lightbox img { max-width:94vw; max-height:78vh; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="FNB Cafe home">
+        <div class="brand-mark">F</div>
+        <span>FNB CAFE<small>VIJAYANAGAR</small></span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#visit">Visit</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-outline" href="#visit">Find us</a>
+        <a class="btn btn-primary" href="#menu">View menu</a>
+        <button class="mobile-menu" aria-label="Open menu" onclick="toggleMobileNav()">☰</button>
+      </div>
+    </div>
+    <div id="mobileNav" style="display:none; padding:0 20px 16px;">
+      <div style="display:grid; gap:10px; font-weight:800; font-size:14px;">
+        <a href="#menu" onclick="toggleMobileNav()">Menu</a>
+        <a href="#about" onclick="toggleMobileNav()">About</a>
+        <a href="#gallery" onclick="toggleMobileNav()">Gallery</a>
+        <a href="#visit" onclick="toggleMobileNav()">Visit</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-slideshow" aria-hidden="true">
+        <div class="hero-slide" style="background-image:url('photos/fnb1.jpeg');"></div>
+        <div class="hero-slide" style="background-image:url('photos/fnb2.jpeg');"></div>
+        <div class="hero-slide" style="background-image:url('photos/fnb3.jpeg');"></div>
+        <div class="hero-slide" style="background-image:url('photos/fnb4.jpeg');"></div>
+        <div class="hero-slide" style="background-image:url('photos/fnb5.jpeg');"></div>
+        <div class="hero-slide" style="background-image:url('photos/fnb6.jpeg');"></div>
+        <div class="hero-slide" style="background-image:url('photos/fnb7.jpeg');"></div>
+        <div class="hero-slide" style="background-image:url('photos/fnb8.jpeg');"></div>
+      </div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Pure Vegetarian · Fresh · Flavourful · Handcrafted</div>
+          <h1>Your cozy corner in Vijayanagar.</h1>
+          <p class="hero-copy">Fresh, flavourful, handcrafted vegetarian food, refreshing drinks and café favourites — made for quick bites, catch-ups and relaxed evenings.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#menu">Explore the menu →</a>
+            <a class="btn btn-outline" href="#visit">Get directions</a>
+          </div>
+          <div class="mini-trust">
+            <span>☕ Freshly brewed</span>
+            <span>🥐 Made fresh</span>
+            <span>📍 Vijayanagar, Bengaluru</span>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="food-visual" role="img" aria-label="FNB Cafe photo slideshow">
+            <div class="visual-caption">
+              <strong>Made for your everyday.</strong>
+              <span>Drop in for a cup, stay for the conversation.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="section-kicker">100% vegetarian · Fresh · Flavourful · Handcrafted</div><h2>Our Menu</h2></div>
+          <p class="section-note">The menu below is transcribed from the F&B Café printed menu. Prices are in Indian Rupees (₹).</p>
+        </div>
+
+        <div class="menu-grid menu-grid-wide">
+          <article class="menu-card">
+            <div class="menu-icon">🍹</div><h3>Mojito</h3>
+            <ul>
+              <li><span>F&B Blue Heaven</span><span class="price">₹60</span></li>
+              <li><span>Lime n' Mint</span><span class="price">₹60</span></li>
+              <li><span>Green Apple</span><span class="price">₹60</span></li>
+              <li><span>Chilli Guava</span><span class="price">₹60</span></li>
+              <li><span>Spicy Mango</span><span class="price">₹60</span></li>
+              <li><span>Strawberry</span><span class="price">₹60</span></li>
+              <li><span>Blueberry</span><span class="price">₹60</span></li>
+            </ul>
+          </article>
+
+          <article class="menu-card">
+            <div class="menu-icon">🥤</div><h3>Milkshakes</h3>
+            <ul>
+              <li><span>Vanilla</span><span class="price">₹60</span></li>
+              <li><span>Strawberry</span><span class="price">₹60</span></li>
+              <li><span>Chocolate</span><span class="price">₹60</span></li>
+              <li><span>Butter Scotch</span><span class="price">₹60</span></li>
+              <li><span>Mango</span><span class="price">₹60</span></li>
+              <li><span>Oreo</span><span class="price">₹60</span></li>
+              <li><span>Litchi</span><span class="price">₹60</span></li>
+              <li><span>Pista</span><span class="price">₹60</span></li>
+              <li><span>Dry Fruit</span><span class="price">₹80</span></li>
+              <li><span>Cold Coffee</span><span class="price">₹60</span></li>
+              <li><span>Rose Milk</span><span class="price">₹60</span></li>
+            </ul>
+          </article>
+
+          <article class="menu-card">
+            <div class="menu-icon">🥪</div><h3>Sandwich</h3>
+            <ul>
+              <li><span>Veg Sandwich</span><span class="price">₹50</span></li>
+              <li><span>Veg Sandwich with Cheese</span><span class="price">₹60</span></li>
+              <li><span>Corn Sandwich</span><span class="price">₹50</span></li>
+              <li><span>Corn Sandwich with Cheese</span><span class="price">₹60</span></li>
+              <li><span>Cheese Chilli Sandwich</span><span class="price">₹60</span></li>
+              <li><span>Paneer Sandwich</span><span class="price">₹60</span></li>
+              <li><span>Paneer Cheese Sandwich</span><span class="price">₹75</span></li>
+              <li><span>Chocolate Sandwich</span><span class="price">₹50</span></li>
+            </ul>
+          </article>
+
+          <article class="menu-card">
+            <div class="menu-icon">🍔</div><h3>Veg Burger</h3>
+            <ul>
+              <li><span>Aloo Tikki Burger</span><span class="price">₹55</span></li>
+              <li><span>Classic Veg Burger</span><span class="price">₹80</span></li>
+              <li><span>Cheese n' Corn Burger</span><span class="price">₹95</span></li>
+              <li><span>Crispy Veg Burger</span><span class="price">₹65</span></li>
+              <li><span>Chilly Cheese Burger</span><span class="price">₹105</span></li>
+              <li><span>Cheesy Delight Burger</span><span class="price">₹95</span></li>
+              <li><span>Vegmakhani Burger</span><span class="price">₹65</span></li>
+              <li><span>Peri Peri Veg Burger</span><span class="price">₹95</span></li>
+              <li><span>Spicy Paneer Burger</span><span class="price">₹105</span></li>
+              <li><span>Grand Veg Burger</span><span class="price">₹124</span></li>
+            </ul>
+            <p class="menu-note">Add-on cheese slice: ₹15</p>
+          </article>
+
+          <article class="menu-card">
+            <div class="menu-icon">🍟</div><h3>Veg Starters</h3>
+            <ul>
+              <li><span>Hara Bara Kabab <small>6 pcs</small></span><span class="price">₹70</span></li>
+              <li><span>Veg Chilli Potato Shots <small>8 pcs</small></span><span class="price">₹40</span></li>
+              <li><span>Veg Strips <small>6 pcs</small></span><span class="price">₹65</span></li>
+              <li><span>Veg Nuggets <small>6 pcs</small></span><span class="price">₹65</span></li>
+              <li><span>Onion Rings <small>6 pcs</small></span><span class="price">₹65</span></li>
+              <li><span>Cheese Shots <small>6 pcs</small></span><span class="price">₹70</span></li>
+              <li><span>Smiley <small>6 pcs</small></span><span class="price">₹60</span></li>
+            </ul>
+          </article>
+
+          <article class="menu-card">
+            <div class="menu-icon">🥟</div><h3>Momos</h3>
+            <div class="price-head"><span>Item</span><span>Steamed / Fried</span></div>
+            <ul>
+              <li><span>Classic Veg Momos</span><span class="price">₹50 / ₹70</span></li>
+              <li><span>Veg Momos</span><span class="price">₹60 / ₹70</span></li>
+              <li><span>Paneer Momos</span><span class="price">₹70 / ₹80</span></li>
+              <li><span>Corn Cheese Momos</span><span class="price">₹70 / ₹80</span></li>
+              <li><span>Paneer Tikka Momos</span><span class="price">₹70 / ₹80</span></li>
+            </ul>
+          </article>
+
+          <article class="menu-card">
+            <div class="menu-icon">🍝</div><h3>Pasta</h3>
+            <ul>
+              <li><span>White Sauce Pasta</span><span class="price">₹69</span></li>
+              <li><span>Red Sauce Pasta</span><span class="price">₹69</span></li>
+            </ul>
+          </article>
+
+          <article class="menu-card">
+            <div class="menu-icon">🍦</div><h3>Ice Cream</h3>
+            <div class="price-head"><span>Flavour</span><span>Single / Double</span></div>
+            <ul>
+              <li><span>Vanilla</span><span class="price">₹25 / ₹40</span></li>
+              <li><span>Strawberry</span><span class="price">₹30 / ₹50</span></li>
+              <li><span>Butterscotch</span><span class="price">₹40 / ₹70</span></li>
+              <li><span>Chocolate</span><span class="price">₹35 / ₹65</span></li>
+              <li><span>Blackcurrant</span><span class="price">₹45 / ₹80</span></li>
+              <li><span>Pista</span><span class="price">₹45 / ₹80</span></li>
+              <li><span>Mango</span><span class="price">₹40 / ₹70</span></li>
+            </ul>
+          </article>
+
+          <article class="menu-card">
+            <div class="menu-icon">🧄</div><h3>Garlic Bread</h3>
+            <ul>
+              <li><span>Corn &amp; Jalapeños</span><span class="price">₹79</span></li>
+              <li><span>Paneer &amp; Onion</span><span class="price">₹89</span></li>
+              <li><span>Double Cheese &amp; Corn</span><span class="price">₹99</span></li>
+            </ul>
+          </article>
+
+          <article class="menu-card">
+            <div class="menu-icon">🍜</div><h3>Maggi</h3>
+            <ul>
+              <li><span>Plain Maggi</span><span class="price">₹40</span></li>
+              <li><span>Peri Peri Maggi</span><span class="price">₹60</span></li>
+              <li><span>Cheese Maggi</span><span class="price">₹60</span></li>
+              <li><span>Peri Peri Cheese Maggi</span><span class="price">₹70</span></li>
+            </ul>
+          </article>
+
+          <article class="menu-card">
+            <div class="menu-icon">🍫</div><h3>Brownie &amp; DBC</h3>
+            <ul>
+              <li><span>Brownie Fudge</span><span class="price">₹65</span></li>
+              <li><span>Brownie with Ice</span><span class="price">₹85</span></li>
+              <li><span>Regular DBC</span><span class="price">₹120</span></li>
+              <li><span>Special DBC</span><span class="price">₹150</span></li>
+            </ul>
+          </article>
+
+          <article class="menu-card">
+            <div class="menu-icon">🌯</div><h3>Veg Wraps</h3>
+            <ul>
+              <li><span>Aloo Wrap</span><span class="price">₹70</span></li>
+              <li><span>Salad Wrap</span><span class="price">₹90</span></li>
+              <li><span>Supreme Wrap</span><span class="price">₹105</span></li>
+              <li><span>Spicy Paneer Wrap</span><span class="price">₹135</span></li>
+            </ul>
+          </article>
+
+          <article class="menu-card">
+            <div class="menu-icon">🍟</div><h3>Fries</h3>
+            <ul>
+              <li><span>Regular</span><span class="price">₹50</span></li>
+              <li><span>Large</span><span class="price">₹70</span></li>
+            </ul>
+            <p class="menu-note"><b>Flavours +₹10:</b> Hot &amp; Spicy, Peri Peri, Cajun Spicy, Chipotle Spicy, Jalapeño Seasoning, Chatpata Masala, Cream &amp; Onion.</p>
+            <p class="menu-note"><b>Sauces +₹10:</b> Chipotle, Peri Peri, Classic Mayo, BBQ, Sweet Chilli, Garlic Chilli, Cheese Burst, Salsa.</p>
+          </article>
+
+          <article class="menu-card menu-card-featured">
+            <div class="menu-icon">🍨</div><h3>Specials &amp; Combos</h3>
+            <ul>
+              <li><span>Triveni Ice Cream <small>Butter · Banana · Gulkand · Ice Cream</small></span><span class="price">₹99</span></li>
+              <li><span>Fries + Drink</span><span class="price">₹99</span></li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="pizza-section">
+          <div class="pizza-heading"><span class="section-kicker">Fresh dough pizza</span><h3>7 inch · Classic</h3></div>
+          <div class="pizza-grid">
+            <div>
+              <ul class="pizza-list">
+                <li><span>Margherita</span><b>₹89</b></li>
+                <li><span>Onion</span><b>₹99</b></li>
+                <li><span>Tomato</span><b>₹99</b></li>
+                <li><span>Golden Corn</span><b>₹99</b></li>
+                <li><span>Capsicum</span><b>₹99</b></li>
+                <li><span>Onion &amp; Capsicum</span><b>₹119</b></li>
+                <li><span>Corn &amp; Onion</span><b>₹119</b></li>
+                <li><span>Red Paprika &amp; Jalapeño</span><b>₹119</b></li>
+                <li><span>Paneer Onion</span><b>₹119</b></li>
+              </ul>
+            </div>
+            <div>
+              <div class="pizza-heading premium-heading"><span class="section-kicker">Premium</span></div>
+              <ul class="pizza-list">
+                <li><span>Double Cheese Margherita</span><b>₹119*</b></li>
+                <li><span>Peppy Paneer <small>Paneer, Capsicum, Red Paprika</small></span><b>₹129*</b></li>
+                <li><span>Veggie Loaded <small>Corn, Capsicum, Onion, Red Paprika, Jalapeño</small></span><b>₹129*</b></li>
+                <li><span>Fiery Pizza <small>Red Paprika, Jalapeño, Capsicum, Green Chilli</small></span><b>₹129*</b></li>
+                <li><span>Corn Paneer Cheese</span><b>₹129*</b></li>
+                <li><span>F&amp;B Veg Paradise <small>Onion, Corn, Red Paprika, Jalapeño</small></span><b>₹129*</b></li>
+                <li><span>Italian Treat <small>Capsicum, Black Olives, Onion, Red Paprika, Jalapeño, Corn</small></span><b>₹129*</b></li>
+                <li><span>Tandoor Paneer <small>Tandoori Paneer, Capsicum, Black Olives, Onion, Red Paprika, Jalapeño</small></span><b>₹129*</b></li>
+                <li><span>Corn &amp; Paneer <small>Capsicum, Black Olives, Onion, Red Paprika, Jalapeño, Corn, Paneer</small></span><b>₹129*</b></li>
+              </ul>
+            </div>
+          </div>
+          <p class="menu-note pizza-disclaimer">*Premium pizza prices are reconstructed from the partially cropped price column in the supplied photo; please replace them with the exact printed prices if you have the uncropped menu image.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="section-kicker">A glimpse inside</div><h2>Gallery</h2></div>
+          <p class="section-note">Showcase the space, signature dishes, coffee and the little moments that make FNB Cafe special.</p>
+        </div>
+        <div class="gallery-grid">
+          <button class="gallery-item" type="button" data-full="photos/fnb11.jpeg" data-caption="FNB Cafe · Photo 1" aria-label="Open FNB Cafe photo 1"><img src="photos/fnb4.jpeg" alt="FNB Cafe photo 1" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="photos/fnb1.jpeg" data-caption="FNB Cafe · Photo 2" aria-label="Open FNB Cafe photo 2"><img src="photos/fnb1.jpeg" alt="FNB Cafe photo 2" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="photos/fnb2.jpeg" data-caption="FNB Cafe · Photo 2" aria-label="Open FNB Cafe photo 2"><img src="photos/fnb2.jpeg" alt="FNB Cafe photo 2" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="photos/fnb3.jpeg" data-caption="FNB Cafe · Photo 3" aria-label="Open FNB Cafe photo 3"><img src="photos/fnb3.jpeg" alt="FNB Cafe photo 3" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="photos/fnb4.jpeg" data-caption="FNB Cafe · Photo 4" aria-label="Open FNB Cafe photo 4"><img src="photos/fnb11.jpeg" alt="FNB Cafe photo 4" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="photos/fnb5.jpeg" data-caption="FNB Cafe · Photo 5" aria-label="Open FNB Cafe photo 5"><img src="photos/fnb5.jpeg" alt="FNB Cafe photo 5" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="photos/fnb6.jpeg" data-caption="FNB Cafe · Photo 6" aria-label="Open FNB Cafe photo 6"><img src="photos/fnb6.jpeg" alt="FNB Cafe photo 6" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="photos/fnb7.jpeg" data-caption="FNB Cafe · Photo 7" aria-label="Open FNB Cafe photo 7"><img src="photos/fnb7.jpeg" alt="FNB Cafe photo 7" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="photos/fnb8.jpeg" data-caption="FNB Cafe · Photo 8" aria-label="Open FNB Cafe photo 8"><img src="photos/fnb8.jpeg" alt="FNB Cafe photo 8" loading="lazy"></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" style="padding-top:0;">
+      <div class="container">
+        <div class="about-wrap">
+          <div>
+            <div class="section-kicker" style="color:#d6a06e;">More than a café</div>
+            <h2>Good food. Warm people. No rush.</h2>
+            <p>FNB Cafe is imagined as a friendly neighbourhood spot in Vijayanagar where a strong cup of coffee meets simple, satisfying food. Come in for a quick bite or settle in and make yourself comfortable.</p>
+            <a class="btn btn-primary" style="margin-top:24px;background:#fff;color:#2d1b12;" href="#visit">Plan your visit</a>
+          </div>
+          <div class="about-stats">
+            <div class="stat"><strong>01</strong><span>Neighbourhood café vibe</span></div>
+            <div class="stat"><strong>02</strong><span>Fresh café favourites</span></div>
+            <div class="stat"><strong>03</strong><span>Coffee worth coming back for</span></div>
+            <div class="stat"><strong>04</strong><span>A place to meet & unwind</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="visit">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="section-kicker">Come say hello</div><h2>Visit FNB Cafe</h2></div>
+          <p class="section-note">Add the cafe's exact address, phone number, opening hours and map link here.</p>
+        </div>
+        <div class="visit">
+          <div class="info-card">
+            <div class="info-row"><b>Location</b><span>Vijayanagar, Bengaluru, Karnataka</span></div>
+            <div class="info-row"><b>Hours</b><span>Every day · 8:00 AM – 10:30 PM</span></div>
+            <div class="info-row"><b>Phone</b><span><a href="tel:+919108974145">+91 9108974145</a></span></div>
+            <div class="info-row"><b>Email</b><span>F&amp;B Cafe · Vijayanagar</span></div>
+            <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=FNB%20Cafe%20Vijayanagar%20Bengaluru" target="_blank" rel="noopener" style="margin-top:22px;">Open in Google Maps ↗</a>
+          </div>
+          <div class="map-card" aria-label="Stylized map placeholder">
+            <div class="road a"></div><div class="road b"></div>
+            <div class="map-pin"></div>
+            <div class="map-label"><b>FNB Cafe</b><small>Vijayanagar · Bengaluru</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <div class="cta-box">
+          <div><div class="section-kicker">One more coffee?</div><h2>Meet you at FNB.</h2><p>Bring a friend. Bring your laptop. Bring your appetite.</p></div>
+          <a class="btn btn-primary" href="#visit">Get directions →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button class="lightbox-close" type="button" onclick="closeLightbox()" aria-label="Close photo viewer">×</button>
+    <img id="lightboxImage" src="" alt="">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+
+  <footer>
+    <div class="container footer-row">
+      <p><strong>FNB Cafe Vijayanagar</strong> · Bengaluru</p>
+      <p>© <span id="year"></span> FNB Cafe. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMobileNav() {
+      const nav = document.getElementById('mobileNav');
+      nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+    }
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        lightboxImage.src = item.dataset.full;
+        lightboxImage.alt = item.querySelector('img').alt;
+        lightboxCaption.textContent = item.dataset.caption || '';
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightboxImage.src = '';
+      document.body.style.overflow = '';
+    }
+
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+    });
+
+  </script>
+</body>
+</html>
